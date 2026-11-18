@@ -89,3 +89,19 @@ test("upstream failure returns a useful 502", async () => {
     globalThis.fetch = prior;
   }
 });
+
+test("ukulele canonicalizes, proxies its assets, and leaves nearby paths alone", async () => {
+  const base = "https://sambarbeau.com";
+  const bare = await worker.fetch(new Request(base + "/uke?from=projects"), env);
+  assert.equal(bare.status, 308);
+  assert.equal(bare.headers.get("Location"), base + "/uke/?from=projects");
+  assert.equal(await (await worker.fetch(new Request(base + "/ukes"), env)).text(), "/ukes");
+  const prior = globalThis.fetch;
+  globalThis.fetch = async request => new Response(request.url);
+  try {
+    const response = await worker.fetch(new Request(base + "/uke/music.js?v=1"), env);
+    assert.equal(await response.text(), "https://sambarbeau-uke.pages.dev/music.js?v=1");
+  } finally {
+    globalThis.fetch = prior;
+  }
+});

@@ -14,9 +14,10 @@ Small projects live under the personal domain. Sither is a separate game and kee
 | `/constants/` | sibling `constants-explorer` repository | `constants-explorer.pages.dev` |
 | `/color/` | sibling `color-game` repository (`color-game-web` on GitHub) | `color-game-web.pages.dev` |
 | `/qr/` | sibling `qr-code` repository | `qr-code-ex8.pages.dev` |
+| `/uke/` | sibling `uke` repository, output directory `public` | `sambarbeau-uke.pages.dev` |
 | `sither.sambarbeau.com` | sibling `sither` repository | separate deployment and custom subdomain |
 
-The existing `_worker.js` uses Cloudflare Pages advanced mode to proxy the three independently deployed projects. It strips the project prefix upstream, preserves queries, and rewrites same-origin redirects back to the public project path. Bare project paths redirect to the trailing-slash version so relative scripts, styles, and images resolve correctly. Other paths use `env.ASSETS`, including the photo scrubber. No new DNS record or Pages project is needed for the scrubber.
+The existing `_worker.js` uses Cloudflare Pages advanced mode to proxy the independently deployed projects. It strips the project prefix upstream, preserves queries, and rewrites same-origin redirects back to the public project path. Bare project paths redirect to the trailing-slash version so relative scripts, styles, and images resolve correctly. Other paths use `env.ASSETS`, including the photo scrubber. No new DNS record or Pages project is needed for the scrubber.
 
 Keep project assets relative (`app.js`, `img/...`) and site navigation absolute (`https://sambarbeau.com/projects.html`) in independently hosted projects. Avoid root-relative project assets: `/app.js` would point at the personal site's root. Do not add a redirect from an upstream Pages domain back to its proxied public path; that would create a proxy loop.
 

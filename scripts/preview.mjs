@@ -4,10 +4,12 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const port = Number(process.env.PREVIEW_PORT || 8000);
 const mounts = {
   "/constants": path.resolve(root, "../constants-explorer"),
   "/color": path.resolve(root, "../color-game"),
   "/qr": path.resolve(root, "../qr-code"),
+  "/uke": path.resolve(root, "../uke/public"),
 };
 const types = {
   ".html": "text/html",
@@ -60,6 +62,6 @@ http
       res.end("Not found");
     }
   })
-  .listen(8000, "127.0.0.1", () =>
-    console.log("Preview: http://127.0.0.1:8000"),
+  .listen(port, "127.0.0.1", () =>
+    console.log(`Preview: http://127.0.0.1:${port}`),
   );

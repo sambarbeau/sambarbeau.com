@@ -2,6 +2,7 @@
 // (such as /photo-scrubber/) are served directly by this site's ASSETS binding.
 export const PROXIES = [
   { prefix: "/qr", upstream: "https://qr-code-ex8.pages.dev" },
+  { prefix: "/uke", upstream: "https://sambarbeau-uke.pages.dev" },
   { prefix: "/constants", upstream: "https://constants-explorer.pages.dev" },
   { prefix: "/color", upstream: "https://color-game-web.pages.dev" },
 ];
