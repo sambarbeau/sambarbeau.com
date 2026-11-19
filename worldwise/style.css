@@ -124,8 +124,7 @@ button.country:hover:not(:disabled) { background: #f8f7f4; border-color: var(--a
 .mini-bar.winner .mini-bar-track i { background: var(--good); }
 .mini-bar strong { font: .73rem var(--mono); text-align: right; }
 .copy-fallback { width: 100%; padding: .6rem; font: .7rem var(--mono); color: var(--ink); background: white; border: 1px solid var(--line); }
-footer { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: .8rem; border-top: 1px solid var(--line); font-size: .8rem; }
-footer a { color: var(--muted); }
+footer { margin-top: 2rem; padding-top: .8rem; border-top: 1px solid var(--line); font-size: .8rem; }
 dialog { border: 1px solid #aaa7a2; border-radius: 6px; background: var(--card); color: var(--ink); padding: 1.5rem; width: min(560px, calc(100% - 2rem)); max-height: 85dvh; overflow: auto; font-size: .87rem; }
 dialog::backdrop { background: #082f4960; }
 .dialog-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }

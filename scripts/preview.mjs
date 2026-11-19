@@ -56,7 +56,12 @@ http
         "Content-Type": types[path.extname(file)] || "application/octet-stream",
         "Cache-Control": "no-store",
       });
-      res.end(content);
+      // Shared controls in the independently hosted projects use the public site origin.
+      if (prefix && path.extname(file) === ".html") {
+        res.end(content.toString("utf8").replaceAll("https://sambarbeau.com/ui/", "/ui/"));
+      } else {
+        res.end(content);
+      }
     } catch {
       res.writeHead(404);
       res.end("Not found");
